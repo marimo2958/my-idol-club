@@ -1,509 +1,666 @@
 
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MY IDOL CLUB ♡</title>
-<style>
-:root{--blue:#bdeaff;--pink:#ffd9eb;--ink:#514d69;--white:#fff}
-*{box-sizing:border-box}
-body{margin:0;background:linear-gradient(135deg,#effaff,#fff0f7);color:var(--ink);font-family:system-ui,sans-serif}
-header{text-align:center;padding:25px 12px;background:#ffffffc9;border-bottom:2px solid white}
-h1{margin:0;font-size:clamp(25px,6vw,38px);color:#78b8dc}
-header p{margin:7px 0 0;font-size:13px}
-main{width:min(760px,94%);margin:20px auto 50px}
-.card{background:#ffffffed;border:2px solid white;border-radius:23px;padding:18px;margin:15px 0;box-shadow:0 5px 18px #8acbe51b}
-h2{font-size:19px;margin:0 0 14px;color:#77acd0}
-label{display:block;font-size:13px;margin:10px 0 5px}
-input,textarea,select{width:100%;padding:12px;border:1px solid #d8eaf5;border-radius:12px;background:#fff;color:var(--ink);font:inherit}
-button{border:0;border-radius:14px;padding:12px 16px;background:#aee4ff;color:#345a75;font-weight:bold;font-size:14px;cursor:pointer}
-button.secondary{background:#ffe0ee;color:#8c5273}
-button.danger{background:#ffe1e1;color:#a14d4d}
-button:disabled{opacity:.45;cursor:not-allowed}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.small{font-size:12px;color:#817b93;line-height:1.7}
-.pill{display:inline-block;background:#e8f7ff;padding:5px 10px;border-radius:20px;font-size:12px;margin:3px}
-#scratchWrap{position:relative;max-width:430px;margin:15px auto}
-#prizeResult{min-height:165px;border-radius:20px;background:linear-gradient(135deg,#fff0f8,#e8f8ff);display:flex;align-items:center;justify-content:center;text-align:center;padding:25px;font-size:21px;font-weight:bold;white-space:pre-line}
-#scratchCanvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;border-radius:20px;cursor:crosshair}
-.hidden{display:none!important}
-.item{padding:12px 0;border-bottom:1px solid #edf0f7}
-.item:last-child{border:0}
-.item strong{display:block}
-table{width:100%;border-collapse:collapse;font-size:12px}
-td,th{padding:8px 5px;border-bottom:1px solid #edf0f7;text-align:left;vertical-align:top}
-.tableWrap{overflow-x:auto}
-footer{text-align:center;padding:20px;font-size:12px;color:#8c89a1}
-hr{border:0;border-top:1px solid #edf0f7;margin:16px 0}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MY IDOL CLUB ♡</title>
+  <style>
+    :root {
+      --pink: #f5a9c9;
+      --light-pink: #fff0f6;
+      --blue: #cceeff;
+      --text: #594b58;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #fff6fa, #eef9ff);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+        "Hiragino Kaku Gothic ProN", sans-serif;
+    }
+
+    header {
+      padding: 25px 15px 18px;
+      text-align: center;
+      background: var(--white);
+      border-bottom: 3px solid var(--blue);
+    }
+
+    header h1 {
+      margin: 0;
+      color: #ed8fba;
+      font-size: clamp(24px, 6vw, 36px);
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px;
+      background: #fffafd;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      box-shadow: 0 2px 8px #eacddd55;
+    }
+
+    button, .nav-button {
+      border: none;
+      border-radius: 20px;
+      padding: 10px 15px;
+      background: var(--light-pink);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button.primary {
+      background: var(--pink);
+      color: white;
+    }
+
+    button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    main {
+      max-width: 760px;
+      padding: 20px 14px 50px;
+      margin: auto;
+    }
+
+    .panel {
+      background: white;
+      border: 2px solid #f8d9e8;
+      border-radius: 22px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 5px 16px #d9c6d522;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 30px 18px;
+      background: linear-gradient(135deg, #fff0f6, #eaf8ff);
+    }
+
+    .hero .symbol {
+      font-size: 48px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      color: #e98bb5;
+      font-size: 21px;
+      margin-top: 0;
+    }
+
+    h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .muted {
+      color: #958594;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e9d5e1;
+      border-radius: 12px;
+      background: #fffafd;
+      color: var(--text);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .full { width: 100%; margin-top: 14px; }
+
+    .prizes {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .prize {
+      text-align: center;
+      border: 1px solid #f3d8e6;
+      border-radius: 17px;
+      padding: 15px 8px;
+      background: #fffafd;
+      overflow-wrap: anywhere;
+    }
+
+    .prize .emoji { font-size: 34px; }
+
+    .prize .prize-name {
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 15px;
+      background: var(--blue);
+      font-size: 11px;
+    }
+
+    .result {
+      text-align: center;
+      padding: 18px 8px;
+      margin-top: 15px;
+      border-radius: 16px;
+      background: #fff0f6;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .result strong {
+      display: block;
+      color: #e47eac;
+      font-size: 22px;
+    }
+
+    .notice {
+      padding: 12px;
+      border-radius: 12px;
+      background: #f0f9ff;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .history-item {
+      border-bottom: 1px dashed #ead6e3;
+      padding: 12px 0;
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .hidden { display: none !important; }
+
+    footer {
+      text-align: center;
+      padding: 22px;
+      font-size: 11px;
+      color: #958594;
+    }
+
+    @media (max-width: 420px) {
+      nav { gap: 5px; }
+      nav button { padding: 9px 11px; font-size: 12px; }
+      .panel { padding: 16px; }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <h1 id="siteTitle">MY IDOL CLUB ♡</h1>
-  <p>୨୧ きらきらスクラッチ体験 ୨୧</p>
-  <span class="pill">FREE DEMO</span>
-</header>
+  <header>
+    <h1>MY IDOL CLUB ♡</h1>
+    <p>♡ MY FAVORITE, MY HAPPINESS ♡</p>
+  </header>
 
-<main>
-  <section class="card" id="loginCard">
-    <h2>♡ ようこそ ♡</h2>
-    <label for="nickname">ニックネーム</label>
-    <input id="nickname" maxlength="30" placeholder="ニックネームを入力してね">
-    <div class="actions"><button id="loginBtn">ログインする ♡</button></div>
-    <p class="small">このサイトは無料のデモです。実際の景品・購入・発送はありません。</p>
-  </section>
+  <nav>
+    <button onclick="showPage('home')">HOME</button>
+    <button onclick="showPage('prizes')">景品一覧</button>
+    <button onclick="showPage('history')">抽選履歴</button>
+    <button onclick="showPage('contact')">お問い合わせ</button>
+    <button onclick="showPage('admin')">管理画面</button>
+  </nav>
 
-  <section class="card hidden" id="gameCard">
-    <h2>♡ スクラッチ ♡</h2>
-    <p id="welcome"></p>
-    <p class="small">カードを指やマウスでこすると結果が見えるよ！</p>
-    <div id="scratchWrap">
-      <div id="prizeResult">✨ ここに結果が出るよ ✨</div>
-      <canvas id="scratchCanvas"></canvas>
-    </div>
-    <div class="actions">
-      <button id="newCardBtn">スクラッチを引く</button>
-      <button id="showBtn" class="secondary">結果を見る</button>
-    </div>
-    <p id="gameMessage" class="small" aria-live="polite"></p>
-    <hr>
-    <h2>♡ あなたの履歴 ♡</h2>
-    <div id="myHistory"></div>
-    <div class="actions"><button id="logoutBtn" class="secondary">ログアウト</button></div>
-  </section>
+  <main>
+    <section id="home" class="page">
+      <div class="panel hero">
+        <div class="symbol">🎀🩵</div>
+        <h2>WELCOME TO MY IDOL CLUB ♡</h2>
+        <p>あなたの運試しを楽しもう！</p>
+        <p class="muted">
+          かわいい景品がいっぱいのデモ抽選サイトです♡
+        </p>
+      </div>
 
-  <section class="card">
-    <h2>♡ 管理者ページ ♡</h2>
-    <p class="small">デモ用管理画面です。パスワードはソースコード内で見えるため、実際の個人情報や重要なデータを管理しないでね。</p>
-    <div id="adminLogin">
-      <label for="adminPassword">デモ用パスワード</label>
-      <input id="adminPassword" type="password" placeholder="デモ用パスワード">
-      <div class="actions"><button id="adminLoginBtn">管理画面を開く</button></div>
-      <p id="adminMessage" class="small" aria-live="polite"></p>
-    </div>
+      <div class="panel">
+        <h2>🎁 DEMO LOTTERY</h2>
+        <p class="muted">
+          ニックネームを入力して、抽選を体験してね！
+          このサイトはデモ専用で、実際の景品交換はありません。
+        </p>
 
-    <div id="adminPanel" class="hidden">
-      <hr>
-      <h2>サイト設定</h2>
-      <label for="titleInput">サイトタイトル</label>
-      <input id="titleInput" maxlength="60">
-      <div class="actions"><button id="saveTitleBtn">タイトルを保存</button></div>
+        <label for="nickname">ニックネーム</label>
+        <input id="nickname" maxlength="30" placeholder="例：まりも">
 
-      <hr>
-      <h2>景品・確率・在庫の設定</h2>
-      <p class="small">確率は、当選可能な景品同士の重みとして使います。上限に達した景品と在庫切れの景品は抽選対象外になります。</p>
-      <div id="prizeSettings"></div>
-      <div class="actions"><button id="addPrizeBtn" class="secondary">＋ 景品を追加</button><button id="savePrizesBtn">設定を保存</button></div>
+        <button id="drawButton" class="primary full" onclick="drawLottery()">
+          ♡ 抽選する ♡
+        </button>
 
-      <hr>
-      <h2>全ユーザーの抽選履歴</h2>
-      <div id="allHistory"></div>
-      <div class="actions"><button id="exportBtn">履歴をJSON保存</button><button id="clearHistoryBtn" class="danger">履歴を消去</button></div>
+        <div id="drawResult" class="result hidden" aria-live="polite"></div>
+      </div>
 
-      <hr>
-      <h2>発送状況（デモ）</h2>
-      <p class="small">実際の発送は行いません。画面上の状態管理だけを体験できます。</p>
-      <div id="shippingList"></div>
+      <div class="panel">
+        <h2>♡ お知らせ ♡</h2>
+        <p class="notice">
+          MY IDOL CLUB は抽選の動作を体験するためのデモサイトです。
+          金銭の支払い、実際の景品の提供、発送は行いません。
+        </p>
+      </div>
+    </section>
 
-      <hr>
-      <h2>データ管理</h2>
-      <div class="actions"><button id="resetBtn" class="danger">デモデータを初期状態に戻す</button><button id="adminLogoutBtn" class="secondary">管理画面を閉じる</button></div>
-      <p class="small">初期化すると、このブラウザに保存したデモ履歴・設定が消えます。</p>
-    </div>
-  </section>
-</main>
+    <section id="prizes" class="page hidden">
+      <div class="panel">
+        <h2>🎀 景品一覧</h2>
+        <p class="muted">現在のデモ景品と在庫を表示します。</p>
+        <div id="prizeList" class="prizes">
+          <p class="muted">景品を読み込み中...</p>
+        </div>
+        <button class="full" onclick="loadState()">↻ 更新する</button>
+      </div>
+    </section>
 
-<footer>♡ MY IDOL CLUB ♡<br>無料デモ・実際の景品や発送はありません</footer>
+    <section id="history" class="page hidden">
+      <div class="panel">
+        <h2>📖 抽選履歴</h2>
+        <p class="muted">
+          抽選時に入力したニックネームで検索できます。
+        </p>
+        <label for="historyNickname">ニックネーム</label>
+        <input id="historyNickname" maxlength="30" placeholder="ニックネームを入力">
+        <button class="primary full" onclick="loadHistory()">履歴を見る</button>
+        <div id="historyList"></div>
+      </div>
+    </section>
 
-<script>
-(() => {
-  "use strict";
+    <section id="contact" class="page hidden">
+      <div class="panel">
+        <h2>💌 お問い合わせ</h2>
+        <p class="muted">
+          デモ用のお問い合わせフォームです。
+          本名・住所・電話番号などの個人情報は入力しないでね。
+        </p>
 
-  // デモ専用。ここに本物のパスワードを設定しないでね。
-  const ADMIN_PASSWORD = "admin-demo";
-  const STORAGE_KEY = "myIdolClubDemo_v2";
+        <label for="contactName">ニックネーム（任意）</label>
+        <input id="contactName" maxlength="30" placeholder="ニックネーム">
 
-  const defaultData = () => ({
-    title: "MY IDOL CLUB ♡",
-    prizes: [
-      {id:"p1",name:"大当たり ♡",prob:5,max:2,stock:2,won:0},
-      {id:"p2",name:"あたり ✨",prob:20,max:10,stock:10,won:0},
-      {id:"p3",name:"参加賞 🎀",prob:75,max:100,stock:100,won:0}
-    ],
-    history: [],
-    nextOrder: 1
-  });
+        <label for="contactMessage">メッセージ</label>
+        <textarea id="contactMessage" maxlength="1000"
+          placeholder="お問い合わせ内容を入力"></textarea>
 
-  let data = loadData();
-  let user = "";
-  let adminOpen = false;
-  let currentResult = null;
-  let revealed = true;
+        <button id="contactButton" class="primary full" onclick="sendContact()">
+          送信する
+        </button>
+        <p id="contactStatus" class="muted" aria-live="polite"></p>
+      </div>
+    </section>
 
-  const $ = id => document.getElementById(id);
-  const escapeHTML = value => String(value).replace(/[&<>"']/g, ch => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  })[ch]);
+    <section id="admin" class="page hidden">
+      <div class="panel">
+        <h2>🔐 管理画面</h2>
+        <p class="muted">
+          デモ用の管理機能です。パスワードを公開したり、
+          実際の個人情報を管理したりしないでください。
+        </p>
 
-  function loadData() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (parsed && Array.isArray(parsed.prizes) && Array.isArray(parsed.history)) {
-          return parsed;
-        }
+        <label for="adminPassword">管理パスワード</label>
+        <input id="adminPassword" type="password"
+          autocomplete="current-password" placeholder="管理パスワード">
+
+        <button class="primary full" onclick="adminLogin()">ログイン</button>
+        <p id="adminStatus" class="muted" aria-live="polite"></p>
+
+        <div id="adminEditor" class="hidden">
+          <h3>景品の設定</h3>
+          <label for="prizeId">景品ID（既存景品の編集用）</label>
+          <input id="prizeId" placeholder="空欄なら新しい景品">
+
+          <label for="prizeName">景品名</label>
+          <input id="prizeName" maxlength="80" placeholder="景品名">
+
+          <label for="prizeProbability">当選確率（％）</label>
+          <input id="prizeProbability" type="number" min="0.01"
+            max="100" step="0.01" placeholder="例：10">
+
+          <label for="prizeStock">在庫数</label>
+          <input id="prizeStock" type="number" min="0"
+            step="1" placeholder="例：20">
+
+          <button class="primary full" onclick="savePrize()">設定を保存</button>
+          <button class="full" onclick="loadState()">景品一覧を更新</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    MY IDOL CLUB ♡<br>
+    DEMO ONLY · 実際の景品交換・販売はありません
+  </footer>
+
+  <script>
+    // 最新の Google Apps Script ウェブアプリURL
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbyPZZ63cGydP7ncWIGmV6BgDNp4g7MQ6jBxfQVoxDbE4F7hJyKJa6N2H4pciKXXEVn1/exec";
+
+    let currentAdminPassword = "";
+    let currentPrizes = [];
+
+    function showPage(pageId) {
+      document.querySelectorAll(".page").forEach(page => {
+        page.classList.add("hidden");
+      });
+      document.getElementById(pageId).classList.remove("hidden");
+
+      if (pageId === "prizes") loadState();
+    }
+
+    // Apps Scriptとの通信はJSONP方式
+    function api(action, params = {}) {
+      return new Promise((resolve, reject) => {
+        const callbackName =
+          "idolCallback" + Date.now() + Math.floor(Math.random() * 100000);
+
+        const script = document.createElement("script");
+        const query = new URLSearchParams({
+          ...params,
+          action,
+          callback: callbackName
+        });
+
+        let finished = false;
+
+        const cleanup = () => {
+          if (finished) return;
+          finished = true;
+          clearTimeout(timeout);
+          delete window[callbackName];
+          script.remove();
+        };
+
+        const timeout = setTimeout(() => {
+          cleanup();
+          reject(new Error("通信がタイムアウトしました。URLや公開設定を確認してね。"));
+        }, 20000);
+
+        window[callbackName] = data => {
+          cleanup();
+          if (data && data.ok === false) {
+            reject(new Error(data.error || "処理に失敗しました。"));
+          } else {
+            resolve(data);
+          }
+        };
+
+        script.onerror = () => {
+          cleanup();
+          reject(new Error("通信できませんでした。公開URLを確認してね。"));
+        };
+
+        script.src = API_URL + "?" + query.toString();
+        document.body.appendChild(script);
+      });
+    }
+
+    function safeText(value) {
+      return String(value ?? "");
+    }
+
+    function escapeHTML(value) {
+      return safeText(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function getPrizeName(prize) {
+      return prize.name ?? prize.prizeName ?? prize["景品名"] ?? "景品";
+    }
+
+    function getPrizeStock(prize) {
+      return prize.stock ?? prize["在庫"] ?? prize["在庫数"] ?? 0;
+    }
+
+    function getPrizeProbability(prize) {
+      return prize.probability ?? prize["確率"] ?? prize["当選確率"] ?? "";
+    }
+
+    function renderPrizes(prizes) {
+      currentPrizes = Array.isArray(prizes) ? prizes : [];
+      const container = document.getElementById("prizeList");
+
+      if (!currentPrizes.length) {
+        container.innerHTML =
+          '<p class="muted">景品がまだありません。設定を確認してね。</p>';
+        return;
       }
-    } catch (e) {}
-    return defaultData();
-  }
 
-  function saveData() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    } catch (e) {
-      alert("保存できませんでした。ブラウザの保存容量や設定を確認してね。");
-    }
-  }
+      container.innerHTML = currentPrizes.map(prize => {
+        const name = getPrizeName(prize);
+        const stock = getPrizeStock(prize);
+        const probability = getPrizeProbability(prize);
 
-  function setTitle() {
-    $("siteTitle").textContent = data.title || "MY IDOL CLUB ♡";
-    document.title = data.title || "MY IDOL CLUB ♡";
-    $("titleInput").value = data.title || "";
-  }
-
-  function login() {
-    const name = $("nickname").value.trim();
-    if (!name) {
-      alert("ニックネームを入力してね！");
-      return;
-    }
-    user = name.slice(0,30);
-    $("loginCard").classList.add("hidden");
-    $("gameCard").classList.remove("hidden");
-    $("welcome").textContent = "ようこそ、" + user + " さん ♡";
-    currentResult = null;
-    revealed = true;
-    $("prizeResult").textContent = "✨「スクラッチを引く」を押してね ✨";
-    $("gameMessage").textContent = "";
-    resetScratch();
-    renderMyHistory();
-  }
-
-  function logout() {
-    user = "";
-    currentResult = null;
-    $("gameCard").classList.add("hidden");
-    $("loginCard").classList.remove("hidden");
-    $("nickname").value = "";
-  }
-
-  function weightedPrize() {
-    const eligible = data.prizes.filter(p =>
-      Number(p.stock) > 0 &&
-      Number(p.won) < Number(p.max) &&
-      Number(p.prob) > 0
-    );
-    const total = eligible.reduce((sum,p) => sum + Number(p.prob), 0);
-    if (!eligible.length || total <= 0) return null;
-    let r = Math.random() * total;
-    for (const p of eligible) {
-      r -= Number(p.prob);
-      if (r < 0) return p;
-    }
-    return eligible[eligible.length - 1];
-  }
-
-  function draw() {
-    if (!user) return;
-    if (currentResult && !revealed) {
-      $("gameMessage").textContent = "先に今のカードの結果を確認してね。";
-      return;
+        return `
+          <div class="prize">
+            <div class="emoji">🎁</div>
+            <div class="prize-name">${escapeHTML(name)}</div>
+            <div><span class="tag">在庫 ${escapeHTML(stock)}</span></div>
+            <p class="muted">確率：${escapeHTML(probability)}%</p>
+          </div>
+        `;
+      }).join("");
     }
 
-    const prize = weightedPrize();
-    const now = new Date();
-    const timestamp = now.toLocaleString("ja-JP");
-    const order = "MIC-" + String(data.nextOrder++).padStart(5,"0");
+    async function loadState() {
+      const container = document.getElementById("prizeList");
+      container.innerHTML = '<p class="muted">読み込み中...</p>';
 
-    if (prize) {
-      prize.stock = Math.max(0, Number(prize.stock) - 1);
-      prize.won = Number(prize.won) + 1;
+      try {
+        const data = await api("state");
+        renderPrizes(data.prizes || data.data?.prizes || []);
+      } catch (error) {
+        container.innerHTML =
+          `<p class="muted">${escapeHTML(error.message)}</p>`;
+      }
     }
 
-    currentResult = {
-      order, user, prizeId: prize ? prize.id : null,
-      prizeName: prize ? prize.name : "景品なし",
-      time: timestamp,
-      shipping: "未対応"
-    };
+    async function drawLottery() {
+      const nickname = document.getElementById("nickname").value.trim();
+      const button = document.getElementById("drawButton");
+      const result = document.getElementById("drawResult");
 
-    data.history.unshift(currentResult);
-    saveData();
+      if (!nickname) {
+        alert("ニックネームを入力してね！");
+        return;
+      }
 
-    revealed = false;
-    $("prizeResult").textContent = "🎀 こすって結果を見てね！ 🎀";
-    $("gameMessage").textContent = "受付番号：" + order;
-    $("newCardBtn").disabled = true;
-    resetScratch();
-    renderMyHistory();
-    renderAdmin();
-  }
+      button.disabled = true;
+      result.classList.remove("hidden");
+      result.textContent = "抽選中... 🎀";
 
-  function reveal() {
-    if (!currentResult) {
-      $("gameMessage").textContent = "まずスクラッチを引いてね！";
-      return;
-    }
-    if (revealed) return;
-    revealed = true;
-    $("prizeResult").textContent =
-      (currentResult.prizeName === "景品なし" ? "また遊んでね ♡" : "🎉 " + currentResult.prizeName + " 🎉") +
-      "\n\n受付番号：" + currentResult.order;
-    $("gameMessage").textContent = "結果を確認したよ！";
-    $("newCardBtn").disabled = false;
-    resetScratch();
-    renderMyHistory();
-  }
+      try {
+        const data = await api("draw", { nickname });
+        const prize = data.prize || data.result || data.winner;
 
-  const canvas = $("scratchCanvas");
-  const ctx = canvas.getContext("2d");
-  let scratching = false;
-  let scratchCount = 0;
-
-  function resetScratch() {
-    const wrap = $("scratchWrap");
-    const rect = wrap.getBoundingClientRect();
-    const w = Math.max(1, Math.floor(rect.width));
-    const h = Math.max(165, Math.floor($("prizeResult").offsetHeight));
-    canvas.width = w * devicePixelRatio;
-    canvas.height = h * devicePixelRatio;
-    canvas.style.width = w + "px";
-    canvas.style.height = h + "px";
-    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
-    ctx.globalCompositeOperation = "source-over";
-    ctx.clearRect(0,0,w,h);
-
-    if (revealed || !currentResult) {
-      canvas.style.pointerEvents = "none";
-      canvas.style.display = "none";
-      return;
+        result.innerHTML = `
+          ♡ 抽選結果 ♡
+          <strong>${escapeHTML(
+            typeof prize === "string"
+              ? prize
+              : getPrizeName(prize || {})
+          )}</strong>
+          <span>デモ抽選に参加してくれてありがとう！</span>
+        `;
+        loadState();
+      } catch (error) {
+        result.textContent = error.message;
+      } finally {
+        button.disabled = false;
+      }
     }
 
-    canvas.style.display = "block";
-    canvas.style.pointerEvents = "auto";
-    ctx.fillStyle = "#b9e7ff";
-    ctx.fillRect(0,0,w,h);
-    ctx.fillStyle = "#fff";
-    ctx.font = "bold 19px system-ui";
-    ctx.textAlign = "center";
-    ctx.fillText("♡ SCRATCH ♡",w/2,h/2-8);
-    ctx.font = "13px system-ui";
-    ctx.fillText("指でこすってね ✨",w/2,h/2+19);
-    scratchCount = 0;
-  }
+    async function loadHistory() {
+      const nickname = document.getElementById("historyNickname").value.trim();
+      const container = document.getElementById("historyList");
 
-  function scratchAt(event) {
-    if (!scratching || revealed || !currentResult) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    ctx.globalCompositeOperation = "destination-out";
-    ctx.beginPath();
-    ctx.arc(x,y,22,0,Math.PI*2);
-    ctx.fill();
-    scratchCount++;
-    if (scratchCount > 35) reveal();
-  }
+      if (!nickname) {
+        container.textContent = "ニックネームを入力してね。";
+        return;
+      }
 
-  canvas.addEventListener("pointerdown", e => {
-    scratching = true;
-    canvas.setPointerCapture(e.pointerId);
-    scratchAt(e);
-  });
-  canvas.addEventListener("pointermove", scratchAt);
-  canvas.addEventListener("pointerup", () => scratching = false);
-  canvas.addEventListener("pointercancel", () => scratching = false);
-  window.addEventListener("resize", () => {
-    if (!revealed && currentResult) resetScratch();
-  });
+      container.textContent = "読み込み中...";
 
-  function renderMyHistory() {
-    const mine = data.history.filter(h => h.user === user);
-    $("myHistory").innerHTML = mine.length ? mine.map(h =>
-      `<div class="item"><strong>${escapeHTML(h.prizeName)}</strong>
-      <span class="small">受付番号：${escapeHTML(h.order)}<br>
-      日時：${escapeHTML(h.time)}</span></div>`
-    ).join("") : '<p class="small">まだ履歴はないよ。</p>';
-  }
+      try {
+        const data = await api("myHistory", { nickname });
+        const history = data.history || data.records || [];
 
-  function renderPrizeSettings() {
-    $("prizeSettings").innerHTML = data.prizes.map((p,i) => `
-      <div class="item">
-        <strong>景品 ${i+1}</strong>
-        <label>景品名</label>
-        <input data-field="name" data-id="${escapeHTML(p.id)}" maxlength="60" value="${escapeHTML(p.name)}">
-        <label>確率の重み（0以上）</label>
-        <input type="number" min="0" max="100000" data-field="prob" data-id="${escapeHTML(p.id)}" value="${Number(p.prob)}">
-        <label>当選上限</label>
-        <input type="number" min="0" max="1000000" data-field="max" data-id="${escapeHTML(p.id)}" value="${Number(p.max)}">
-        <label>在庫数</label>
-        <input type="number" min="0" max="1000000" data-field="stock" data-id="${escapeHTML(p.id)}" value="${Number(p.stock)}">
-        <p class="small">現在の当選数：${Number(p.won)}</p>
-        <button class="danger" data-remove="${escapeHTML(p.id)}">この景品を削除</button>
-      </div>
-    `).join("");
-
-    $("prizeSettings").querySelectorAll("[data-remove]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        if (!confirm("この景品を設定から削除する？")) return;
-        data.prizes = data.prizes.filter(p => p.id !== btn.dataset.remove);
-        saveData();
-        renderAdmin();
-      });
-    });
-  }
-
-  function renderAdmin() {
-    if (!adminOpen) return;
-    renderPrizeSettings();
-
-    $("allHistory").innerHTML = data.history.length ? `
-      <div class="tableWrap"><table>
-      <thead><tr><th>番号・日時</th><th>ユーザー</th><th>結果</th></tr></thead>
-      <tbody>${data.history.map(h => `<tr>
-        <td>${escapeHTML(h.order)}<br>${escapeHTML(h.time)}</td>
-        <td>${escapeHTML(h.user)}</td>
-        <td>${escapeHTML(h.prizeName)}</td>
-      </tr>`).join("")}</tbody></table></div>
-    ` : '<p class="small">履歴はまだありません。</p>';
-
-    $("shippingList").innerHTML = data.history.length ? data.history.map(h => `
-      <div class="item">
-        <strong>${escapeHTML(h.order)} · ${escapeHTML(h.prizeName)}</strong>
-        <p class="small">${escapeHTML(h.user)}（${escapeHTML(h.time)}）</p>
-        <label>デモ状態</label>
-        <select data-shipping="${escapeHTML(h.order)}">
-          ${["未対応","確認中","完了"].map(s =>
-            `<option ${h.shipping===s?"selected":""}>${s}</option>`
-          ).join("")}
-        </select>
-      </div>
-    `).join("") : '<p class="small">履歴ができるとここに表示されます。</p>';
-
-    $("shippingList").querySelectorAll("[data-shipping]").forEach(sel => {
-      sel.addEventListener("change", () => {
-        const h = data.history.find(x => x.order === sel.dataset.shipping);
-        if (h) {
-          h.shipping = sel.value;
-          saveData();
-        }
-      });
-    });
-  }
-
-  function openAdmin() {
-    if ($("adminPassword").value !== ADMIN_PASSWORD) {
-      $("adminMessage").textContent = "パスワードが違うよ。デモ用は admin-demo だよ。";
-      return;
-    }
-    adminOpen = true;
-    $("adminLogin").classList.add("hidden");
-    $("adminPanel").classList.remove("hidden");
-    $("adminMessage").textContent = "";
-    renderAdmin();
-    setTitle();
-  }
-
-  $("loginBtn").addEventListener("click", login);
-  $("nickname").addEventListener("keydown", e => {
-    if (e.key === "Enter") login();
-  });
-  $("logoutBtn").addEventListener("click", logout);
-  $("newCardBtn").addEventListener("click", draw);
-  $("showBtn").addEventListener("click", reveal);
-  $("adminLoginBtn").addEventListener("click", openAdmin);
-  $("adminPassword").addEventListener("keydown", e => {
-    if (e.key === "Enter") openAdmin();
-  });
-
-  $("saveTitleBtn").addEventListener("click", () => {
-    data.title = $("titleInput").value.trim().slice(0,60) || "MY IDOL CLUB ♡";
-    saveData();
-    setTitle();
-    alert("タイトルを保存したよ！");
-  });
-
-  $("addPrizeBtn").addEventListener("click", () => {
-    data.prizes.push({
-      id:"p"+Date.now(),name:"新しい景品",prob:10,max:10,stock:10,won:0
-    });
-    saveData();
-    renderAdmin();
-  });
-
-  $("savePrizesBtn").addEventListener("click", () => {
-    const fields = $("prizeSettings").querySelectorAll("[data-field]");
-    for (const input of fields) {
-      const p = data.prizes.find(x => x.id === input.dataset.id);
-      if (!p) continue;
-      const field = input.dataset.field;
-      if (field === "name") {
-        p.name = input.value.trim().slice(0,60) || "名前なし";
-      } else {
-        const n = Number(input.value);
-        if (!Number.isFinite(n) || n < 0) {
-          alert("確率・上限・在庫は0以上の数字にしてね。");
+        if (!history.length) {
+          container.textContent = "履歴はまだありません。";
           return;
         }
-        p[field] = Math.floor(n);
+
+        container.innerHTML = history.map(item => `
+          <div class="history-item">
+            <strong>${escapeHTML(
+              item.prizeName ?? item.prize ?? item["景品名"] ?? "抽選結果"
+            )}</strong><br>
+            <span class="muted">${
+              escapeHTML(item.date ?? item.timestamp ?? item["日時"] ?? "")
+            }</span>
+          </div>
+        `).join("");
+      } catch (error) {
+        container.textContent = error.message;
       }
     }
-    saveData();
-    renderAdmin();
-    alert("景品設定を保存したよ！");
-  });
 
-  $("exportBtn").addEventListener("click", () => {
-    const blob = new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "my-idol-club-demo-history.json";
-    a.click();
-    URL.revokeObjectURL(url);
-  });
+    async function sendContact() {
+      const name = document.getElementById("contactName").value.trim();
+      const message = document.getElementById("contactMessage").value.trim();
+      const status = document.getElementById("contactStatus");
+      const button = document.getElementById("contactButton");
 
-  $("clearHistoryBtn").addEventListener("click", () => {
-    if (!confirm("すべての抽選履歴を消去する？この操作は元に戻せません。")) return;
-    data.history = [];
-    data.nextOrder = 1;
-    data.prizes.forEach(p => p.won = 0);
-    saveData();
-    renderAdmin();
-    renderMyHistory();
-  });
+      if (!message) {
+        status.textContent = "メッセージを入力してね。";
+        return;
+      }
 
-  $("resetBtn").addEventListener("click", () => {
-    if (!confirm("設定・履歴・在庫を含むデモデータを初期化する？")) return;
-    data = defaultData();
-    saveData();
-    setTitle();
-    renderAdmin();
-    renderMyHistory();
-    alert("初期状態に戻したよ！");
-  });
+      button.disabled = true;
+      status.textContent = "送信中...";
 
-  $("adminLogoutBtn").addEventListener("click", () => {
-    adminOpen = false;
-    $("adminPanel").classList.add("hidden");
-    $("adminLogin").classList.remove("hidden");
-    $("adminPassword").value = "";
-  });
+      try {
+        await api("contact", { name, message });
+        status.textContent = "送信できました。ありがとう！";
+        document.getElementById("contactName").value = "";
+        document.getElementById("contactMessage").value = "";
+      } catch (error) {
+        status.textContent = error.message;
+      } finally {
+        button.disabled = false;
+      }
+    }
 
-  setTitle();
-})();
-</script>
+    async function adminLogin() {
+      const password = document.getElementById("adminPassword").value;
+      const status = document.getElementById("adminStatus");
+
+      if (!password) {
+        status.textContent = "パスワードを入力してね。";
+        return;
+      }
+
+      status.textContent = "確認中...";
+
+      try {
+        await api("adminState", { password });
+        currentAdminPassword = password;
+        document.getElementById("adminEditor").classList.remove("hidden");
+        status.textContent = "ログインしました。";
+        loadState();
+      } catch (error) {
+        currentAdminPassword = "";
+        status.textContent = "ログインできませんでした：" + error.message;
+      }
+    }
+
+    async function savePrize() {
+      if (!currentAdminPassword) {
+        alert("先に管理画面へログインしてね。");
+        return;
+      }
+
+      const id = document.getElementById("prizeId").value.trim();
+      const prizeName = document.getElementById("prizeName").value.trim();
+      const probability = document.getElementById("prizeProbability").value;
+      const stock = document.getElementById("prizeStock").value;
+      const status = document.getElementById("adminStatus");
+
+      if (!prizeName || probability === "" || stock === "") {
+        status.textContent = "景品名・確率・在庫数を入力してね。";
+        return;
+      }
+
+      if (Number(probability) <= 0 || Number(probability) > 100 ||
+          !Number.isFinite(Number(probability))) {
+        status.textContent = "確率は0より大きく100以下で入力してね。";
+        return;
+      }
+
+      if (!Number.isInteger(Number(stock)) || Number(stock) < 0) {
+        status.textContent = "在庫数は0以上の整数にしてね。";
+        return;
+      }
+
+      status.textContent = "保存中...";
+
+      try {
+        await api("saveConfig", {
+          password: currentAdminPassword,
+          id,
+          prizeName,
+          probability,
+          stock
+        });
+
+        status.textContent = "設定を保存しました。";
+        await loadState();
+      } catch (error) {
+        status.textContent = "保存できませんでした：" + error.message;
+      }
+    }
+
+    // 最初に景品一覧を取得
+    loadState();
+  </script>
 </body>
 </html>
