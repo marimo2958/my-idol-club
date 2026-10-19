@@ -3,204 +3,236 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MY IDOL CLUB ♡</title>
 <style>
+:root{--pink:#ffb8d0;--deep:#e66f9d;--pale:#fff5fa;--ink:#68485a}
 *{box-sizing:border-box}
-body{margin:0;font-family:sans-serif;color:#72566b;background:linear-gradient(135deg,#fff0f7,#eaf8ff)}
-header{text-align:center;padding:25px 10px;background:#fff9}
-h1{color:#df75ad;margin:0}
-nav{display:flex;gap:7px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:0}
-button{border:0;border-radius:20px;padding:11px 15px;background:#f7c8df;color:#8d416d;font-weight:bold;cursor:pointer}
-nav button{white-space:nowrap}
-nav button.active,.primary{background:#df75ad;color:white}
-main{max-width:700px;margin:auto;padding:15px}
-.panel{background:#ffffffeb;border:1px solid #f5d3e5;border-radius:20px;padding:18px;margin-bottom:15px}
-h2{color:#d75d9e}
-input,textarea{display:block;width:100%;padding:12px;border:1px solid #edc4db;border-radius:12px;margin:8px 0 14px;font:inherit}
-textarea{min-height:100px}
-.hidden{display:none!important}
-.prize{padding:12px;margin:8px 0;border-radius:14px;background:#fff0f7}
-.scratch{height:220px;position:relative;overflow:hidden;border-radius:15px;border:2px solid #f3c6df;background:#fff}
-.result{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#fff,#eaf7ff);color:#d75d9e;font-weight:bold;font-size:23px}
-#cover{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
-.note{font-size:12px;color:#927b8c}
+body{margin:0;background:var(--pale);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",sans-serif}
+header{text-align:center;padding:25px 12px;background:white;border-bottom:2px solid #ffe0eb}
+h1{font-size:27px;margin:0;color:#e66f9d}
+header p{margin:7px 0 0;font-size:12px;letter-spacing:2px}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;padding:12px;background:#fffafd;position:sticky;top:0;z-index:5}
+nav button,.btn{border:0;border-radius:20px;background:#ffe0eb;color:#8d4c69;padding:10px 13px;font-weight:bold;cursor:pointer}
+nav button.active,.btn.primary{background:var(--deep);color:white}
+main{max-width:680px;margin:auto;padding:18px 14px 45px}
+.panel{background:white;border:1px solid #ffe0eb;border-radius:20px;padding:18px;margin:0 0 15px;box-shadow:0 4px 15px #e9a9c51c}
+h2{color:var(--deep);font-size:20px;margin-top:0}
+.small{font-size:12px;color:#997b8a}
+.prize{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px dashed #f4cbd9;padding:12px 0}
+.prize:last-child{border:0}
+.tag{background:#fff0f6;border-radius:12px;padding:5px 9px;font-size:12px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #efc8d8;border-radius:12px;margin:6px 0 12px;font:inherit}
+textarea{min-height:90px}
+button:disabled{opacity:.45}
+#scratchWrap{position:relative;width:100%;max-width:340px;margin:18px auto;height:190px;border-radius:18px;overflow:hidden;background:#fff0f6;border:2px solid #f6c6d9}
+#result{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:23px;font-weight:bold;color:#d94e88;padding:15px}
+#scratch{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.hidden{display:none}
+.historyrow{padding:10px 0;border-bottom:1px dashed #efc8d8;font-size:14px}
+footer{text-align:center;padding:25px;font-size:12px;color:#b68b9f}
 </style>
 </head>
 <body>
 <header>
 <h1>MY IDOL CLUB ♡</h1>
-<p>きらきら推し活しよう 🎀</p>
+<p>♡ YOUR FAVORITE, YOUR HAPPINESS ♡</p>
 </header>
-
-<nav>
+<nav id="nav">
 <button class="active" data-page="home">HOME</button>
 <button data-page="prizes">景品一覧</button>
 <button data-page="contact">お問い合わせ</button>
 <button data-page="history">抽選履歴</button>
 <button data-page="admin">管理人限定</button>
 </nav>
-
 <main>
-<section class="page" id="home">
-<div class="panel">
-<h2>SCRATCH LOTTERY ♡</h2>
-<label>ニックネーム</label>
-<input id="nickname" maxlength="30" placeholder="ニックネーム">
-<div class="scratch">
-<div class="result">
-<div>🎀 SCRATCH RESULT 🎀</div>
-<div id="result">こすってね ♡</div>
-<small id="sub">指で銀色の部分を削ってね</small>
+<section id="home" class="page">
+<div class="panel" style="text-align:center">
+<p>୨୧ ───────── ୨୧</p>
+<h2>Welcome to MY IDOL CLUB ♡</h2>
+<p>今日の運試しをしてみてね！</p>
+<p class="small">スクラッチを指でこすると結果が見えるよ ♡</p>
+<button class="btn primary" onclick="showPage('draw')">スクラッチをする ♡</button>
+<p class="small">※デモ用の抽選サイトです。金銭や実際の賞品の授受はありません。</p>
 </div>
-<canvas id="cover"></canvas>
+<div class="panel"><h2>♡ お知らせ ♡</h2><p>MY IDOL CLUBへようこそ！</p></div>
+</section>
+
+<section id="prizes" class="page hidden">
+<div class="panel"><h2>♡ 景品一覧 ♡</h2><div id="prizeList">読み込み中…</div><button class="btn" onclick="loadPrizes()">更新する</button></div>
+</section>
+
+<section id="draw" class="page hidden">
+<div class="panel" style="text-align:center">
+<h2>♡ Scratch Time ♡</h2>
+<p>下のカードを指でこすってね！</p>
+<button class="btn primary" id="startDraw">抽選する ♡</button>
+<div id="scratchWrap">
+<div id="result">ここに結果が出るよ ♡</div>
+<canvas id="scratch"></canvas>
 </div>
-<p class="note">※デモ用のスクラッチです。実際のお金や景品の授受はありません。</p>
-<button class="primary" id="reset">もう一度スクラッチ</button>
-<p id="status" role="status">準備できたよ ♡</p>
+<p id="drawMessage" class="small">抽選ボタンを押してスタート！</p>
 </div>
 </section>
 
-<section class="page hidden" id="prizes">
-<div class="panel"><h2>景品一覧 ♡</h2><div id="prizeList"></div></div>
-</section>
-
-<section class="page hidden" id="contact">
-<div class="panel">
-<h2>お問い合わせ ♡</h2>
-<label>お名前</label><input id="contactName" maxlength="50">
-<label>メッセージ</label><textarea id="message" maxlength="1000"></textarea>
-<button class="primary" id="send">送信する</button>
-<p id="contactStatus" class="note"></p>
+<section id="contact" class="page hidden">
+<div class="panel"><h2>♡ お問い合わせ ♡</h2>
+<label>お名前（ニックネーム）</label><input id="contactName" maxlength="60" placeholder="まりも">
+<label>お問い合わせ内容</label><textarea id="contactBody" maxlength="1000" placeholder="メッセージを入力してね"></textarea>
+<button class="btn primary" id="sendContact">送信する</button><p id="contactMessage" class="small">デモサイトのお問い合わせは管理者に保存されます。</p>
 </div>
 </section>
 
-<section class="page hidden" id="history">
-<div class="panel"><h2>抽選履歴 ♡</h2><div id="historyList"></div></div>
+<section id="history" class="page hidden">
+<div class="panel"><h2>♡ 抽選履歴 ♡</h2><div id="historyList">読み込み中…</div><button class="btn" onclick="loadHistory()">履歴を更新</button></div>
 </section>
 
-<section class="page hidden" id="admin">
-<div class="panel">
-<h2>管理人限定 ♡</h2>
-<p class="note">下の変更はこの端末だけに保存されます。スプレッドシート連携は別途必要です。</p>
-<label>景品名</label><input id="pname" placeholder="景品名">
-<label>確率（%）</label><input id="prob" type="number" min="0" max="100" value="5">
-<label>在庫数</label><input id="stock" type="number" min="0" value="3">
-<button class="primary" id="savePrize">景品を追加・更新</button>
-<p id="adminStatus"></p>
-</div>
+<section id="admin" class="page hidden">
+<div class="panel"><h2>♡ 管理人限定 ♡</h2>
+<p class="small">管理パスワードはサーバー側で確認します。公開コードにパスワードを書かないでね。</p>
+<label>管理パスワード</label><input id="adminPassword" type="password" autocomplete="current-password">
+<button class="btn primary" id="adminLogin">ログイン</button>
+<div id="adminTools" class="hidden">
+<h2>景品の在庫・確率を更新</h2>
+<label>景品名</label><input id="editName" placeholder="S賞♡">
+<label>当選確率（重み）</label><input id="editWeight" type="number" min="0" step="1" placeholder="5">
+<label>在庫数</label><input id="editStock" type="number" min="0" step="1" placeholder="3">
+<button class="btn primary" id="savePrize">景品を更新</button>
+<p id="adminMessage" class="small"></p>
+</div></div>
 </section>
 </main>
+<footer>♡ MY IDOL CLUB ♡<br>Have a lovely day!</footer>
 
 <script>
-const initialPrizes=[
-{name:"S賞♡",probability:5,stock:3},
-{name:"A賞✧",probability:20,stock:10},
-{name:"B賞☆",probability:35,stock:20},
-{name:"参加賞",probability:40,stock:100}
-];
-const get=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
-const put=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
-let prizes=get("mic_prizes",initialPrizes);
-let scratched=false,drawing=false,last=null;
-const canvas=document.getElementById("cover"),ctx=canvas.getContext("2d");
+/* 公開後、ここをApps Scriptの /exec URLに変更 */
+const API_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
+let currentResult = null;
+let drawing = false;
+const $ = id => document.getElementById(id);
 
-document.querySelectorAll("nav button").forEach(b=>{
-b.addEventListener("click",()=>{
-document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!==b.dataset.page));
-document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x===b));
-if(b.dataset.page==="prizes")renderPrizes();
-if(b.dataset.page==="history")renderHistory();
+function showPage(id){
+ document.querySelectorAll(".page").forEach(s=>s.classList.add("hidden"));
+ const page=$(id); if(page)page.classList.remove("hidden");
+ document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+ if(id==="prizes")loadPrizes();
+ if(id==="history")loadHistory();
+ window.scrollTo(0,0);
+}
+document.querySelectorAll("#nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+function api(action, params={}){
+ return new Promise((resolve,reject)=>{
+  if(!API_URL || API_URL.includes("PASTE_YOUR")){
+   reject(new Error("Apps ScriptのURLがまだ設定されていません"));return;
+  }
+  const cb="cb_"+Date.now()+"_"+Math.random().toString(36).slice(2);
+  const script=document.createElement("script");
+  const timer=setTimeout(()=>{cleanup();reject(new Error("通信がタイムアウトしました"));},15000);
+  function cleanup(){clearTimeout(timer);delete window[cb];script.remove();}
+  window[cb]=data=>{cleanup();if(data&&data.ok)resolve(data);else reject(new Error(data?.message||"処理に失敗しました"));};
+  const query=new URLSearchParams({action,callback:cb,...params});
+  script.src=API_URL+"?"+query.toString();
+  script.onerror=()=>{cleanup();reject(new Error("通信できませんでした。URLと公開設定を確認してね"));};
+  document.body.appendChild(script);
+ });
+}
+async function loadPrizes(){
+ $("prizeList").textContent="読み込み中…";
+ try{
+  const data=await api("prizes");
+  $("prizeList").innerHTML="";
+  data.prizes.forEach(p=>{
+   const row=document.createElement("div");row.className="prize";
+   const name=document.createElement("strong");name.textContent=p.name;
+   const info=document.createElement("span");info.className="tag";info.textContent="在庫："+p.stock;
+   row.append(name,info);$("prizeList").appendChild(row);
+  });
+ }catch(e){$("prizeList").textContent=e.message;}
+}
+async function loadHistory(){
+ $("historyList").textContent="読み込み中…";
+ try{
+  const data=await api("history");
+  $("historyList").innerHTML="";
+  if(!data.history.length){$("historyList").textContent="まだ履歴はありません ♡";return;}
+  data.history.forEach(h=>{
+   const row=document.createElement("div");row.className="historyrow";
+   row.textContent=h.date+"　"+h.prize;
+   $("historyList").appendChild(row);
+  });
+ }catch(e){$("historyList").textContent=e.message;}
+}
+function setupScratch(){
+ const canvas=$("scratch"),wrap=$("scratchWrap"),ctx=canvas.getContext("2d");
+ const rect=wrap.getBoundingClientRect();
+ canvas.width=Math.max(1,Math.floor(rect.width*devicePixelRatio));
+ canvas.height=Math.max(1,Math.floor(rect.height*devicePixelRatio));
+ canvas.style.width="100%";canvas.style.height="100%";
+ ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+ ctx.globalCompositeOperation="source-over";
+ const g=ctx.createLinearGradient(0,0,rect.width,rect.height);
+ g.addColorStop(0,"#ffc6dc");g.addColorStop(1,"#f28db5");
+ ctx.fillStyle=g;ctx.fillRect(0,0,rect.width,rect.height);
+ ctx.fillStyle="#ffffff";ctx.font="bold 22px sans-serif";ctx.textAlign="center";
+ ctx.fillText("♡ SCRATCH ♡",rect.width/2,rect.height/2);
+ ctx.font="13px sans-serif";ctx.fillText("指でこすってね",rect.width/2,rect.height/2+28);
+ ctx.globalCompositeOperation="destination-out";
+ let active=false;
+ function erase(e){
+  if(!active)return;
+  const r=canvas.getBoundingClientRect();
+  const x=e.clientX-r.left,y=e.clientY-r.top;
+  ctx.beginPath();ctx.arc(x,y,19,0,Math.PI*2);ctx.fill();
+ }
+ canvas.onpointerdown=e=>{active=true;canvas.setPointerCapture(e.pointerId);erase(e);};
+ canvas.onpointermove=erase;
+ canvas.onpointerup=canvas.onpointercancel=()=>{active=false;};
+}
+$("startDraw").addEventListener("click",async()=>{
+ if(drawing)return;
+ drawing=true;$("startDraw").disabled=true;
+ $("drawMessage").textContent="抽選中…";
+ $("result").textContent="♡ ？？？ ♡";
+ try{
+  const data=await api("draw");
+  currentResult=data.prize;
+  $("result").textContent=data.prize;
+  $("drawMessage").textContent="指でカードをこすって結果を見てね ♡";
+  setupScratch();
+ }catch(e){
+  $("result").textContent="♡";$("drawMessage").textContent=e.message;
+  setupScratch();
+ }finally{drawing=false;$("startDraw").disabled=false;}
 });
+$("sendContact").addEventListener("click",async()=>{
+ const name=$("contactName").value.trim(),message=$("contactBody").value.trim();
+ if(!name||!message){$("contactMessage").textContent="名前と内容を入力してね";return;}
+ try{
+  await api("contact",{name,message});
+  $("contactMessage").textContent="送信できたよ ♡";
+  $("contactName").value="";$("contactBody").value="";
+ }catch(e){$("contactMessage").textContent=e.message;}
 });
-
-function renderPrizes(){
-const box=document.getElementById("prizeList");box.replaceChildren();
-prizes.forEach(p=>{
-const d=document.createElement("div");d.className="prize";
-d.textContent=`${p.name}　確率 ${p.probability}%　残り ${p.stock}`;
-box.appendChild(d);
+$("adminLogin").addEventListener("click",async()=>{
+ try{
+  await api("adminCheck",{password:$("adminPassword").value});
+  $("adminTools").classList.remove("hidden");
+  $("adminMessage").textContent="ログインしました";
+ }catch(e){$("adminMessage").textContent=e.message;}
 });
-}
-function renderHistory(){
-const box=document.getElementById("historyList");box.replaceChildren();
-const h=get("mic_history",[]);
-if(!h.length){box.textContent="まだ履歴はありません ♡";return}
-h.slice().reverse().forEach(x=>{
-const d=document.createElement("p");
-d.textContent=`${x.date}　${x.nickname}：${x.result}`;
-box.appendChild(d);
+$("savePrize").addEventListener("click",async()=>{
+ try{
+  await api("updatePrize",{
+   password:$("adminPassword").value,
+   name:$("editName").value.trim(),
+   weight:$("editWeight").value,
+   stock:$("editStock").value
+  });
+  $("adminMessage").textContent="更新しました ♡";
+  loadPrizes();
+ }catch(e){$("adminMessage").textContent=e.message;}
 });
-}
-function resize(){
-const r=canvas.getBoundingClientRect(),d=window.devicePixelRatio||1;
-canvas.width=Math.round(r.width*d);canvas.height=Math.round(r.height*d);
-ctx.setTransform(d,0,0,d,0,0);
-const g=ctx.createLinearGradient(0,0,r.width,r.height);
-g.addColorStop(0,"#bcbcc6");g.addColorStop(.5,"#f8f8fc");g.addColorStop(1,"#aaaab8");
-ctx.globalCompositeOperation="source-over";ctx.fillStyle=g;ctx.fillRect(0,0,r.width,r.height);
-ctx.fillStyle="#777";ctx.textAlign="center";ctx.font="bold 22px sans-serif";
-ctx.fillText("✧ SCRATCH ✧",r.width/2,r.height/2);
-ctx.font="14px sans-serif";ctx.fillText("ここをこすってね ♡",r.width/2,r.height/2+25);
-ctx.globalCompositeOperation="destination-out";
-}
-function erase(e){
-const r=canvas.getBoundingClientRect(),p={x:e.clientX-r.left,y:e.clientY-r.top};
-ctx.globalCompositeOperation="destination-out";ctx.lineWidth=38;ctx.lineCap="round";
-ctx.beginPath();
-if(last){ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke()}
-else{ctx.arc(p.x,p.y,19,0,Math.PI*2);ctx.fill()}
-last=p;
-}
-canvas.addEventListener("pointerdown",e=>{
-if(scratched)return;drawing=true;last=null;canvas.setPointerCapture(e.pointerId);erase(e);e.preventDefault();
-});
-canvas.addEventListener("pointermove",e=>{if(drawing){erase(e);e.preventDefault()}});
-function stop(){
-if(!drawing)return;drawing=false;last=null;
-const pixels=ctx.getImageData(0,0,canvas.width,canvas.height).data;
-let clear=0;for(let i=3;i<pixels.length;i+=4)if(pixels[i]<40)clear++;
-if(clear/(pixels.length/4)>.4)finishScratch();
-}
-canvas.addEventListener("pointerup",stop);canvas.addEventListener("pointercancel",stop);
-
-function finishScratch(){
-if(scratched)return;scratched=true;canvas.style.display="none";
-const available=prizes.filter(p=>p.stock>0&&p.probability>0);
-let prize={name:"参加賞",stock:0};
-if(available.length){
-let total=available.reduce((s,p)=>s+Number(p.probability),0),n=Math.random()*total;
-for(const p of available){n-=Number(p.probability);if(n<0){prize=p;break}}
-prize.stock=Math.max(0,Number(prize.stock)-1);
-put("mic_prizes",prizes);
-}
-document.getElementById("result").textContent=prize.name;
-document.getElementById("sub").textContent="スクラッチ完了 ♡";
-document.getElementById("status").textContent="デモ結果を表示したよ ♡";
-const h=get("mic_history",[]);
-h.push({date:new Date().toLocaleString("ja-JP"),nickname:document.getElementById("nickname").value.trim()||"ゲスト",result:prize.name});
-put("mic_history",h);renderHistory();renderPrizes();
-}
-document.getElementById("reset").onclick=()=>{
-scratched=false;canvas.style.display="block";
-document.getElementById("result").textContent="こすってね ♡";
-document.getElementById("sub").textContent="指で銀色の部分を削ってね";
-document.getElementById("status").textContent="準備できたよ ♡";resize();
-};
-document.getElementById("send").onclick=()=>{
-document.getElementById("contactStatus").textContent="お問い合わせ送信はまだ未接続です。";
-};
-document.getElementById("savePrize").onclick=()=>{
-const name=document.getElementById("pname").value.trim();
-const probability=Number(document.getElementById("prob").value),stock=Number(document.getElementById("stock").value);
-if(!name||probability<0||probability>100||stock<0){document.getElementById("adminStatus").textContent="入力内容を確認してね";return}
-const old=prizes.find(p=>p.name===name);
-if(old){old.probability=probability;old.stock=stock}else prizes.push({name,probability,stock});
-put("mic_prizes",prizes);renderPrizes();
-document.getElementById("adminStatus").textContent="この端末の景品一覧を更新したよ";
-};
-renderPrizes();renderHistory();resize();
-window.addEventListener("resize",()=>{if(!scratched)resize()});
+window.addEventListener("resize",()=>{if(!$("draw").classList.contains("hidden")&&currentResult)setupScratch();});
 </script>
 </body>
 </html>
