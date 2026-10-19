@@ -1,666 +1,206 @@
 
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MY IDOL CLUB ♡</title>
-  <style>
-    :root {
-      --pink: #f5a9c9;
-      --light-pink: #fff0f6;
-      --blue: #cceeff;
-      --text: #594b58;
-      --white: #ffffff;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: linear-gradient(180deg, #fff6fa, #eef9ff);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-        "Hiragino Kaku Gothic ProN", sans-serif;
-    }
-
-    header {
-      padding: 25px 15px 18px;
-      text-align: center;
-      background: var(--white);
-      border-bottom: 3px solid var(--blue);
-    }
-
-    header h1 {
-      margin: 0;
-      color: #ed8fba;
-      font-size: clamp(24px, 6vw, 36px);
-      letter-spacing: 1px;
-    }
-
-    header p {
-      margin: 8px 0 0;
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 12px;
-      background: #fffafd;
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      box-shadow: 0 2px 8px #eacddd55;
-    }
-
-    button, .nav-button {
-      border: none;
-      border-radius: 20px;
-      padding: 10px 15px;
-      background: var(--light-pink);
-      color: var(--text);
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button.primary {
-      background: var(--pink);
-      color: white;
-    }
-
-    button:disabled {
-      opacity: .5;
-      cursor: not-allowed;
-    }
-
-    main {
-      max-width: 760px;
-      padding: 20px 14px 50px;
-      margin: auto;
-    }
-
-    .panel {
-      background: white;
-      border: 2px solid #f8d9e8;
-      border-radius: 22px;
-      padding: 20px;
-      margin: 15px 0;
-      box-shadow: 0 5px 16px #d9c6d522;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 30px 18px;
-      background: linear-gradient(135deg, #fff0f6, #eaf8ff);
-    }
-
-    .hero .symbol {
-      font-size: 48px;
-      margin-bottom: 8px;
-    }
-
-    h2 {
-      color: #e98bb5;
-      font-size: 21px;
-      margin-top: 0;
-    }
-
-    h3 {
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-
-    .muted {
-      color: #958594;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    label {
-      display: block;
-      margin: 12px 0 6px;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #e9d5e1;
-      border-radius: 12px;
-      background: #fffafd;
-      color: var(--text);
-      font: inherit;
-    }
-
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    .full { width: 100%; margin-top: 14px; }
-
-    .prizes {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .prize {
-      text-align: center;
-      border: 1px solid #f3d8e6;
-      border-radius: 17px;
-      padding: 15px 8px;
-      background: #fffafd;
-      overflow-wrap: anywhere;
-    }
-
-    .prize .emoji { font-size: 34px; }
-
-    .prize .prize-name {
-      font-weight: bold;
-      margin: 8px 0;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 15px;
-      background: var(--blue);
-      font-size: 11px;
-    }
-
-    .result {
-      text-align: center;
-      padding: 18px 8px;
-      margin-top: 15px;
-      border-radius: 16px;
-      background: #fff0f6;
-      line-height: 1.8;
-      overflow-wrap: anywhere;
-    }
-
-    .result strong {
-      display: block;
-      color: #e47eac;
-      font-size: 22px;
-    }
-
-    .notice {
-      padding: 12px;
-      border-radius: 12px;
-      background: #f0f9ff;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .history-item {
-      border-bottom: 1px dashed #ead6e3;
-      padding: 12px 0;
-      font-size: 13px;
-      line-height: 1.7;
-      overflow-wrap: anywhere;
-    }
-
-    .hidden { display: none !important; }
-
-    footer {
-      text-align: center;
-      padding: 22px;
-      font-size: 11px;
-      color: #958594;
-    }
-
-    @media (max-width: 420px) {
-      nav { gap: 5px; }
-      nav button { padding: 9px 11px; font-size: 12px; }
-      .panel { padding: 16px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MY IDOL CLUB ♡</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:sans-serif;color:#72566b;background:linear-gradient(135deg,#fff0f7,#eaf8ff)}
+header{text-align:center;padding:25px 10px;background:#fff9}
+h1{color:#df75ad;margin:0}
+nav{display:flex;gap:7px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:0}
+button{border:0;border-radius:20px;padding:11px 15px;background:#f7c8df;color:#8d416d;font-weight:bold;cursor:pointer}
+nav button{white-space:nowrap}
+nav button.active,.primary{background:#df75ad;color:white}
+main{max-width:700px;margin:auto;padding:15px}
+.panel{background:#ffffffeb;border:1px solid #f5d3e5;border-radius:20px;padding:18px;margin-bottom:15px}
+h2{color:#d75d9e}
+input,textarea{display:block;width:100%;padding:12px;border:1px solid #edc4db;border-radius:12px;margin:8px 0 14px;font:inherit}
+textarea{min-height:100px}
+.hidden{display:none!important}
+.prize{padding:12px;margin:8px 0;border-radius:14px;background:#fff0f7}
+.scratch{height:220px;position:relative;overflow:hidden;border-radius:15px;border:2px solid #f3c6df;background:#fff}
+.result{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#fff,#eaf7ff);color:#d75d9e;font-weight:bold;font-size:23px}
+#cover{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.note{font-size:12px;color:#927b8c}
+</style>
 </head>
-
 <body>
-  <header>
-    <h1>MY IDOL CLUB ♡</h1>
-    <p>♡ MY FAVORITE, MY HAPPINESS ♡</p>
-  </header>
-
-  <nav>
-    <button onclick="showPage('home')">HOME</button>
-    <button onclick="showPage('prizes')">景品一覧</button>
-    <button onclick="showPage('history')">抽選履歴</button>
-    <button onclick="showPage('contact')">お問い合わせ</button>
-    <button onclick="showPage('admin')">管理画面</button>
-  </nav>
-
-  <main>
-    <section id="home" class="page">
-      <div class="panel hero">
-        <div class="symbol">🎀🩵</div>
-        <h2>WELCOME TO MY IDOL CLUB ♡</h2>
-        <p>あなたの運試しを楽しもう！</p>
-        <p class="muted">
-          かわいい景品がいっぱいのデモ抽選サイトです♡
-        </p>
-      </div>
-
-      <div class="panel">
-        <h2>🎁 DEMO LOTTERY</h2>
-        <p class="muted">
-          ニックネームを入力して、抽選を体験してね！
-          このサイトはデモ専用で、実際の景品交換はありません。
-        </p>
-
-        <label for="nickname">ニックネーム</label>
-        <input id="nickname" maxlength="30" placeholder="例：まりも">
-
-        <button id="drawButton" class="primary full" onclick="drawLottery()">
-          ♡ 抽選する ♡
-        </button>
-
-        <div id="drawResult" class="result hidden" aria-live="polite"></div>
-      </div>
-
-      <div class="panel">
-        <h2>♡ お知らせ ♡</h2>
-        <p class="notice">
-          MY IDOL CLUB は抽選の動作を体験するためのデモサイトです。
-          金銭の支払い、実際の景品の提供、発送は行いません。
-        </p>
-      </div>
-    </section>
-
-    <section id="prizes" class="page hidden">
-      <div class="panel">
-        <h2>🎀 景品一覧</h2>
-        <p class="muted">現在のデモ景品と在庫を表示します。</p>
-        <div id="prizeList" class="prizes">
-          <p class="muted">景品を読み込み中...</p>
-        </div>
-        <button class="full" onclick="loadState()">↻ 更新する</button>
-      </div>
-    </section>
-
-    <section id="history" class="page hidden">
-      <div class="panel">
-        <h2>📖 抽選履歴</h2>
-        <p class="muted">
-          抽選時に入力したニックネームで検索できます。
-        </p>
-        <label for="historyNickname">ニックネーム</label>
-        <input id="historyNickname" maxlength="30" placeholder="ニックネームを入力">
-        <button class="primary full" onclick="loadHistory()">履歴を見る</button>
-        <div id="historyList"></div>
-      </div>
-    </section>
-
-    <section id="contact" class="page hidden">
-      <div class="panel">
-        <h2>💌 お問い合わせ</h2>
-        <p class="muted">
-          デモ用のお問い合わせフォームです。
-          本名・住所・電話番号などの個人情報は入力しないでね。
-        </p>
-
-        <label for="contactName">ニックネーム（任意）</label>
-        <input id="contactName" maxlength="30" placeholder="ニックネーム">
-
-        <label for="contactMessage">メッセージ</label>
-        <textarea id="contactMessage" maxlength="1000"
-          placeholder="お問い合わせ内容を入力"></textarea>
-
-        <button id="contactButton" class="primary full" onclick="sendContact()">
-          送信する
-        </button>
-        <p id="contactStatus" class="muted" aria-live="polite"></p>
-      </div>
-    </section>
-
-    <section id="admin" class="page hidden">
-      <div class="panel">
-        <h2>🔐 管理画面</h2>
-        <p class="muted">
-          デモ用の管理機能です。パスワードを公開したり、
-          実際の個人情報を管理したりしないでください。
-        </p>
-
-        <label for="adminPassword">管理パスワード</label>
-        <input id="adminPassword" type="password"
-          autocomplete="current-password" placeholder="管理パスワード">
-
-        <button class="primary full" onclick="adminLogin()">ログイン</button>
-        <p id="adminStatus" class="muted" aria-live="polite"></p>
-
-        <div id="adminEditor" class="hidden">
-          <h3>景品の設定</h3>
-          <label for="prizeId">景品ID（既存景品の編集用）</label>
-          <input id="prizeId" placeholder="空欄なら新しい景品">
-
-          <label for="prizeName">景品名</label>
-          <input id="prizeName" maxlength="80" placeholder="景品名">
-
-          <label for="prizeProbability">当選確率（％）</label>
-          <input id="prizeProbability" type="number" min="0.01"
-            max="100" step="0.01" placeholder="例：10">
-
-          <label for="prizeStock">在庫数</label>
-          <input id="prizeStock" type="number" min="0"
-            step="1" placeholder="例：20">
-
-          <button class="primary full" onclick="savePrize()">設定を保存</button>
-          <button class="full" onclick="loadState()">景品一覧を更新</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    MY IDOL CLUB ♡<br>
-    DEMO ONLY · 実際の景品交換・販売はありません
-  </footer>
-
-  <script>
-    // 最新の Google Apps Script ウェブアプリURL
-    const API_URL =
-  "https://script.google.com/macros/s/AKfycbyt3REXI0gZUBm94OdKsdzu5VLOv87ex4gYH3eCcFQSep7_951YWbEStDH2foQTU5LV/exec";
-
-    let currentAdminPassword = "";
-    let currentPrizes = [];
-
-    function showPage(pageId) {
-      document.querySelectorAll(".page").forEach(page => {
-        page.classList.add("hidden");
-      });
-      document.getElementById(pageId).classList.remove("hidden");
-
-      if (pageId === "prizes") loadState();
-    }
-
-    // Apps Scriptとの通信はJSONP方式
-    function api(action, params = {}) {
-      return new Promise((resolve, reject) => {
-        const callbackName =
-          "idolCallback" + Date.now() + Math.floor(Math.random() * 100000);
-
-        const script = document.createElement("script");
-        const query = new URLSearchParams({
-          ...params,
-          action,
-          callback: callbackName
-        });
-
-        let finished = false;
-
-        const cleanup = () => {
-          if (finished) return;
-          finished = true;
-          clearTimeout(timeout);
-          delete window[callbackName];
-          script.remove();
-        };
-
-        const timeout = setTimeout(() => {
-          cleanup();
-          reject(new Error("通信がタイムアウトしました。URLや公開設定を確認してね。"));
-        }, 20000);
-
-        window[callbackName] = data => {
-          cleanup();
-          if (data && data.ok === false) {
-            reject(new Error(data.error || "処理に失敗しました。"));
-          } else {
-            resolve(data);
-          }
-        };
-
-        script.onerror = () => {
-          cleanup();
-          reject(new Error("通信できませんでした。公開URLを確認してね。"));
-        };
-
-        script.src = API_URL + "?" + query.toString();
-        document.body.appendChild(script);
-      });
-    }
-
-    function safeText(value) {
-      return String(value ?? "");
-    }
-
-    function escapeHTML(value) {
-      return safeText(value).replace(/[&<>"']/g, char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-      })[char]);
-    }
-
-    function getPrizeName(prize) {
-      return prize.name ?? prize.prizeName ?? prize["景品名"] ?? "景品";
-    }
-
-    function getPrizeStock(prize) {
-      return prize.stock ?? prize["在庫"] ?? prize["在庫数"] ?? 0;
-    }
-
-    function getPrizeProbability(prize) {
-      return prize.probability ?? prize["確率"] ?? prize["当選確率"] ?? "";
-    }
-
-    function renderPrizes(prizes) {
-      currentPrizes = Array.isArray(prizes) ? prizes : [];
-      const container = document.getElementById("prizeList");
-
-      if (!currentPrizes.length) {
-        container.innerHTML =
-          '<p class="muted">景品がまだありません。設定を確認してね。</p>';
-        return;
-      }
-
-      container.innerHTML = currentPrizes.map(prize => {
-        const name = getPrizeName(prize);
-        const stock = getPrizeStock(prize);
-        const probability = getPrizeProbability(prize);
-
-        return `
-          <div class="prize">
-            <div class="emoji">🎁</div>
-            <div class="prize-name">${escapeHTML(name)}</div>
-            <div><span class="tag">在庫 ${escapeHTML(stock)}</span></div>
-            <p class="muted">確率：${escapeHTML(probability)}%</p>
-          </div>
-        `;
-      }).join("");
-    }
-
-    async function loadState() {
-      const container = document.getElementById("prizeList");
-      container.innerHTML = '<p class="muted">読み込み中...</p>';
-
-      try {
-        const data = await api("state");
-        renderPrizes(data.prizes || data.data?.prizes || []);
-      } catch (error) {
-        container.innerHTML =
-          `<p class="muted">${escapeHTML(error.message)}</p>`;
-      }
-    }
-
-    async function drawLottery() {
-      const nickname = document.getElementById("nickname").value.trim();
-      const button = document.getElementById("drawButton");
-      const result = document.getElementById("drawResult");
-
-      if (!nickname) {
-        alert("ニックネームを入力してね！");
-        return;
-      }
-
-      button.disabled = true;
-      result.classList.remove("hidden");
-      result.textContent = "抽選中... 🎀";
-
-      try {
-        const data = await api("draw", { nickname });
-        const prize = data.prize || data.result || data.winner;
-
-        result.innerHTML = `
-          ♡ 抽選結果 ♡
-          <strong>${escapeHTML(
-            typeof prize === "string"
-              ? prize
-              : getPrizeName(prize || {})
-          )}</strong>
-          <span>デモ抽選に参加してくれてありがとう！</span>
-        `;
-        loadState();
-      } catch (error) {
-        result.textContent = error.message;
-      } finally {
-        button.disabled = false;
-      }
-    }
-
-    async function loadHistory() {
-      const nickname = document.getElementById("historyNickname").value.trim();
-      const container = document.getElementById("historyList");
-
-      if (!nickname) {
-        container.textContent = "ニックネームを入力してね。";
-        return;
-      }
-
-      container.textContent = "読み込み中...";
-
-      try {
-        const data = await api("myHistory", { nickname });
-        const history = data.history || data.records || [];
-
-        if (!history.length) {
-          container.textContent = "履歴はまだありません。";
-          return;
-        }
-
-        container.innerHTML = history.map(item => `
-          <div class="history-item">
-            <strong>${escapeHTML(
-              item.prizeName ?? item.prize ?? item["景品名"] ?? "抽選結果"
-            )}</strong><br>
-            <span class="muted">${
-              escapeHTML(item.date ?? item.timestamp ?? item["日時"] ?? "")
-            }</span>
-          </div>
-        `).join("");
-      } catch (error) {
-        container.textContent = error.message;
-      }
-    }
-
-    async function sendContact() {
-      const name = document.getElementById("contactName").value.trim();
-      const message = document.getElementById("contactMessage").value.trim();
-      const status = document.getElementById("contactStatus");
-      const button = document.getElementById("contactButton");
-
-      if (!message) {
-        status.textContent = "メッセージを入力してね。";
-        return;
-      }
-
-      button.disabled = true;
-      status.textContent = "送信中...";
-
-      try {
-        await api("contact", { name, message });
-        status.textContent = "送信できました。ありがとう！";
-        document.getElementById("contactName").value = "";
-        document.getElementById("contactMessage").value = "";
-      } catch (error) {
-        status.textContent = error.message;
-      } finally {
-        button.disabled = false;
-      }
-    }
-
-    async function adminLogin() {
-      const password = document.getElementById("adminPassword").value;
-      const status = document.getElementById("adminStatus");
-
-      if (!password) {
-        status.textContent = "パスワードを入力してね。";
-        return;
-      }
-
-      status.textContent = "確認中...";
-
-      try {
-        await api("adminState", { password });
-        currentAdminPassword = password;
-        document.getElementById("adminEditor").classList.remove("hidden");
-        status.textContent = "ログインしました。";
-        loadState();
-      } catch (error) {
-        currentAdminPassword = "";
-        status.textContent = "ログインできませんでした：" + error.message;
-      }
-    }
-
-    async function savePrize() {
-      if (!currentAdminPassword) {
-        alert("先に管理画面へログインしてね。");
-        return;
-      }
-
-      const id = document.getElementById("prizeId").value.trim();
-      const prizeName = document.getElementById("prizeName").value.trim();
-      const probability = document.getElementById("prizeProbability").value;
-      const stock = document.getElementById("prizeStock").value;
-      const status = document.getElementById("adminStatus");
-
-      if (!prizeName || probability === "" || stock === "") {
-        status.textContent = "景品名・確率・在庫数を入力してね。";
-        return;
-      }
-
-      if (Number(probability) <= 0 || Number(probability) > 100 ||
-          !Number.isFinite(Number(probability))) {
-        status.textContent = "確率は0より大きく100以下で入力してね。";
-        return;
-      }
-
-      if (!Number.isInteger(Number(stock)) || Number(stock) < 0) {
-        status.textContent = "在庫数は0以上の整数にしてね。";
-        return;
-      }
-
-      status.textContent = "保存中...";
-
-      try {
-        await api("saveConfig", {
-          password: currentAdminPassword,
-          id,
-          prizeName,
-          probability,
-          stock
-        });
-
-        status.textContent = "設定を保存しました。";
-        await loadState();
-      } catch (error) {
-        status.textContent = "保存できませんでした：" + error.message;
-      }
-    }
-
-    // 最初に景品一覧を取得
-    loadState();
-  </script>
+<header>
+<h1>MY IDOL CLUB ♡</h1>
+<p>きらきら推し活しよう 🎀</p>
+</header>
+
+<nav>
+<button class="active" data-page="home">HOME</button>
+<button data-page="prizes">景品一覧</button>
+<button data-page="contact">お問い合わせ</button>
+<button data-page="history">抽選履歴</button>
+<button data-page="admin">管理人限定</button>
+</nav>
+
+<main>
+<section class="page" id="home">
+<div class="panel">
+<h2>SCRATCH LOTTERY ♡</h2>
+<label>ニックネーム</label>
+<input id="nickname" maxlength="30" placeholder="ニックネーム">
+<div class="scratch">
+<div class="result">
+<div>🎀 SCRATCH RESULT 🎀</div>
+<div id="result">こすってね ♡</div>
+<small id="sub">指で銀色の部分を削ってね</small>
+</div>
+<canvas id="cover"></canvas>
+</div>
+<p class="note">※デモ用のスクラッチです。実際のお金や景品の授受はありません。</p>
+<button class="primary" id="reset">もう一度スクラッチ</button>
+<p id="status" role="status">準備できたよ ♡</p>
+</div>
+</section>
+
+<section class="page hidden" id="prizes">
+<div class="panel"><h2>景品一覧 ♡</h2><div id="prizeList"></div></div>
+</section>
+
+<section class="page hidden" id="contact">
+<div class="panel">
+<h2>お問い合わせ ♡</h2>
+<label>お名前</label><input id="contactName" maxlength="50">
+<label>メッセージ</label><textarea id="message" maxlength="1000"></textarea>
+<button class="primary" id="send">送信する</button>
+<p id="contactStatus" class="note"></p>
+</div>
+</section>
+
+<section class="page hidden" id="history">
+<div class="panel"><h2>抽選履歴 ♡</h2><div id="historyList"></div></div>
+</section>
+
+<section class="page hidden" id="admin">
+<div class="panel">
+<h2>管理人限定 ♡</h2>
+<p class="note">下の変更はこの端末だけに保存されます。スプレッドシート連携は別途必要です。</p>
+<label>景品名</label><input id="pname" placeholder="景品名">
+<label>確率（%）</label><input id="prob" type="number" min="0" max="100" value="5">
+<label>在庫数</label><input id="stock" type="number" min="0" value="3">
+<button class="primary" id="savePrize">景品を追加・更新</button>
+<p id="adminStatus"></p>
+</div>
+</section>
+</main>
+
+<script>
+const initialPrizes=[
+{name:"S賞♡",probability:5,stock:3},
+{name:"A賞✧",probability:20,stock:10},
+{name:"B賞☆",probability:35,stock:20},
+{name:"参加賞",probability:40,stock:100}
+];
+const get=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+const put=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+let prizes=get("mic_prizes",initialPrizes);
+let scratched=false,drawing=false,last=null;
+const canvas=document.getElementById("cover"),ctx=canvas.getContext("2d");
+
+document.querySelectorAll("nav button").forEach(b=>{
+b.addEventListener("click",()=>{
+document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!==b.dataset.page));
+document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x===b));
+if(b.dataset.page==="prizes")renderPrizes();
+if(b.dataset.page==="history")renderHistory();
+});
+});
+
+function renderPrizes(){
+const box=document.getElementById("prizeList");box.replaceChildren();
+prizes.forEach(p=>{
+const d=document.createElement("div");d.className="prize";
+d.textContent=`${p.name}　確率 ${p.probability}%　残り ${p.stock}`;
+box.appendChild(d);
+});
+}
+function renderHistory(){
+const box=document.getElementById("historyList");box.replaceChildren();
+const h=get("mic_history",[]);
+if(!h.length){box.textContent="まだ履歴はありません ♡";return}
+h.slice().reverse().forEach(x=>{
+const d=document.createElement("p");
+d.textContent=`${x.date}　${x.nickname}：${x.result}`;
+box.appendChild(d);
+});
+}
+function resize(){
+const r=canvas.getBoundingClientRect(),d=window.devicePixelRatio||1;
+canvas.width=Math.round(r.width*d);canvas.height=Math.round(r.height*d);
+ctx.setTransform(d,0,0,d,0,0);
+const g=ctx.createLinearGradient(0,0,r.width,r.height);
+g.addColorStop(0,"#bcbcc6");g.addColorStop(.5,"#f8f8fc");g.addColorStop(1,"#aaaab8");
+ctx.globalCompositeOperation="source-over";ctx.fillStyle=g;ctx.fillRect(0,0,r.width,r.height);
+ctx.fillStyle="#777";ctx.textAlign="center";ctx.font="bold 22px sans-serif";
+ctx.fillText("✧ SCRATCH ✧",r.width/2,r.height/2);
+ctx.font="14px sans-serif";ctx.fillText("ここをこすってね ♡",r.width/2,r.height/2+25);
+ctx.globalCompositeOperation="destination-out";
+}
+function erase(e){
+const r=canvas.getBoundingClientRect(),p={x:e.clientX-r.left,y:e.clientY-r.top};
+ctx.globalCompositeOperation="destination-out";ctx.lineWidth=38;ctx.lineCap="round";
+ctx.beginPath();
+if(last){ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke()}
+else{ctx.arc(p.x,p.y,19,0,Math.PI*2);ctx.fill()}
+last=p;
+}
+canvas.addEventListener("pointerdown",e=>{
+if(scratched)return;drawing=true;last=null;canvas.setPointerCapture(e.pointerId);erase(e);e.preventDefault();
+});
+canvas.addEventListener("pointermove",e=>{if(drawing){erase(e);e.preventDefault()}});
+function stop(){
+if(!drawing)return;drawing=false;last=null;
+const pixels=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+let clear=0;for(let i=3;i<pixels.length;i+=4)if(pixels[i]<40)clear++;
+if(clear/(pixels.length/4)>.4)finishScratch();
+}
+canvas.addEventListener("pointerup",stop);canvas.addEventListener("pointercancel",stop);
+
+function finishScratch(){
+if(scratched)return;scratched=true;canvas.style.display="none";
+const available=prizes.filter(p=>p.stock>0&&p.probability>0);
+let prize={name:"参加賞",stock:0};
+if(available.length){
+let total=available.reduce((s,p)=>s+Number(p.probability),0),n=Math.random()*total;
+for(const p of available){n-=Number(p.probability);if(n<0){prize=p;break}}
+prize.stock=Math.max(0,Number(prize.stock)-1);
+put("mic_prizes",prizes);
+}
+document.getElementById("result").textContent=prize.name;
+document.getElementById("sub").textContent="スクラッチ完了 ♡";
+document.getElementById("status").textContent="デモ結果を表示したよ ♡";
+const h=get("mic_history",[]);
+h.push({date:new Date().toLocaleString("ja-JP"),nickname:document.getElementById("nickname").value.trim()||"ゲスト",result:prize.name});
+put("mic_history",h);renderHistory();renderPrizes();
+}
+document.getElementById("reset").onclick=()=>{
+scratched=false;canvas.style.display="block";
+document.getElementById("result").textContent="こすってね ♡";
+document.getElementById("sub").textContent="指で銀色の部分を削ってね";
+document.getElementById("status").textContent="準備できたよ ♡";resize();
+};
+document.getElementById("send").onclick=()=>{
+document.getElementById("contactStatus").textContent="お問い合わせ送信はまだ未接続です。";
+};
+document.getElementById("savePrize").onclick=()=>{
+const name=document.getElementById("pname").value.trim();
+const probability=Number(document.getElementById("prob").value),stock=Number(document.getElementById("stock").value);
+if(!name||probability<0||probability>100||stock<0){document.getElementById("adminStatus").textContent="入力内容を確認してね";return}
+const old=prizes.find(p=>p.name===name);
+if(old){old.probability=probability;old.stock=stock}else prizes.push({name,probability,stock});
+put("mic_prizes",prizes);renderPrizes();
+document.getElementById("adminStatus").textContent="この端末の景品一覧を更新したよ";
+};
+renderPrizes();renderHistory();resize();
+window.addEventListener("resize",()=>{if(!scratched)resize()});
+</script>
 </body>
 </html>
